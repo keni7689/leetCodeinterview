@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="prism.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Cheetsheet</title>
+</head>
+
+<body>
+    <nav>
+        <span class="logo"><img src="leetcode.png" alt=""></span>
+        <div class="Content center">
+            This Leetcode Top 100 Interview Question Answers
+        </div>
+    </nav>
+    <div class="container">
+        <h2>26. Remove Duplicates from Sorted Array</h2>
+        <button>
+            <a href="solution/26.jpg">
+            <img src="hint.png" alt="">
+        </a>
+        </button>
+        <div><b>Explantion</b></div>
+        <div>Click above</div>
+        <pre>
+                <code class="language-C ++">
+                    class Solution {
+                        public:
+                            int removeDuplicates(vector&lt;int&gt;& nums) {
+                                
+                                if(nums.size()==0){
+                                    return 0;
+                                }
+                                int i=0;
+                                for(int j=1;j&lt;nums.size();j++){
+                                    if(nums[j]!=nums[i]){
+                                        i++;
+                                        nums[i]=nums[j];
+                                    }
+                                }
+                                return i+1;
+                            }
+                        };
+                </code>
+            </pre>
+    </div>
+</body>
+
+</html>
