@@ -11,26 +11,67 @@
     <link rel="stylesheet" href="style.css">
     <script src="prism.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/95ed87abd5.js" crossorigin="anonymous"></script>
     <title>HTML Cheetsheet</title>
 </head>
 
 <body>
     <nav>
+
         <span class="logo"><img src="leetcode.png" alt=""></span>
         <div class="Content center">
             This Leetcode Top 100 Interview Question Answers
         </div>
+        <span style="flex: 1 1 auto" ></span>
+        <div class="btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <input type="search" placeholder="search" class="search" />
+
     </nav>
+    
     <div class="container">
-        <h2>26. Remove Duplicates from Sorted Array</h2>
+        <h2>1. Two Sum</h2>
         <button>
             <a href="solution/26.jpg">
-            <img src="hint.png" alt="">
-        </a>
+                <img src="hint.png" alt="" />
+            </a>
         </button>
         <div><b>Explantion</b></div>
         <div>Click above</div>
-        <pre>
+        <ol>
+            <pre>
+                <code class="language-C ++">
+                    class Solution {
+                        public:
+                            vector&lt;int> twoSum(vector&lt;int>& nums, int t) {
+                                vector&lt;pair&lt;int, int>> v;
+                                int n=nums.size();
+                                for(int i=0;i&lt;n;i++)v.push_back({nums[i],i});
+                                sort(v.begin(),v.end());
+                                int s=0,e=n-1;
+                                while(s&lt;e){
+                                    int sum=v[s].first+v[e].first;
+                                    if(sum==t)return{v[s].second,v[e].second};
+                                    else if(sum>t) e--;
+                                    else s++;
+                                }
+                                return {-1,-1};
+                            }
+                        };
+                </code>
+            </pre>
+        </ol>
+        <h2>26. Remove Duplicates from Sorted Array</h2>
+        <button>
+            <a href="solution/26.jpg">
+                <img src="hint.png" alt="">
+            </a>
+        </button>
+        <div><b>Explantion</b></div>
+        <div>Click above</div>
+        <ol>
+            <pre>
                 <code class="language-C ++">
                     class Solution {
                         public:
@@ -51,6 +92,39 @@
                         };
                 </code>
             </pre>
+        </ol>
+        <h2>66. Plus One</h2>
+        <button>
+            <a href="solution/26.jpg">
+                <img src="hint.png" alt="">
+            </a>
+        </button>
+        <div><b>Explantion</b></div>
+        <div>Click above</div>
+        <ol>
+            <pre>
+                <code class="language-C ++">
+                    class Solution {
+                        public:
+                            vector<int> plusOne(vector&lt;int>& D) {
+                                for(int i=D.size()-1;i>=0;i--){
+                                    if(D[i]&lt;9){
+                                    D[i]++;
+                                        return D;
+                                    }
+                                    else{
+                                        D[i]=0;
+                                    }
+                                }
+                            D.push_back(0);
+                            D[0]=1;
+                            return D;
+                            }
+                        };
+                </code>
+            </pre>
+        </ol>
+
     </div>
 </body>
 
