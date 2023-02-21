@@ -62,6 +62,333 @@
                 </code>
             </pre>
         </ol>
+        <h2>3.Longest substring without repeating characters</h2>
+        <button>
+            <a href="solution/26.jpg">
+                <img src="hint.png" alt="">
+            </a>
+        </button>
+        <div><b>Explantion</b></div>
+        <div>Click above</div>
+        <ol>
+            <pre>
+                <code class="language-C ++">
+                    int lengthOfLongestSubstring(string s) {
+                        vector&lt;int> dict(256, -1);
+                        int start = -1, max_len = 0;
+                        for(int i = 0; i != s.size(); i++){
+                            if(dict[s[i]] > start){
+                                start = dict[s[i]];
+                            }
+                            dict[s[i]] = i;
+                            max_len = max(max_len, i - start);
+                        }
+                        return max_len;
+                    }
+                </code>
+            </pre>
+        </ol>
+        <h2>11. Container With Most Water</h2>
+        <button>
+            <a href="solution/26.jpg">
+                <img src="hint.png" alt="">
+            </a>
+        </button>
+        <div><b>Explantion</b></div>
+        <div>Click above</div>
+        <ol>
+            <pre>
+                <code class="language-C ++">
+                    class Solution {
+                        public:
+                            int maxArea(vector&lt;int>& height) {
+                                int i = 0, j = height.size()-1;
+                                int area = 0, res = INT_MIN;
+                                while(i < j){
+                                    int b = min(height[i], height[j]);
+                                    int l = j-i;
+                                    area = l*b;
+                                    res = max(area, res);
+                                    if(height[i] >= height[j])
+                                        j--;
+                                    else
+                                        i++;
+                                }
+                                return res;
+                            }
+                        };
+                </code>
+            </pre>
+        </ol>
+        <h2>14. Longest Common Prefix</h2>
+        <button>
+            <a href="solution/26.jpg">
+                <img src="hint.png" alt="">
+            </a>
+        </button>
+        <div><b>Explantion</b></div>
+        <div>Click above</div>
+        <ol>
+            <pre>
+                <code class="language-C ++">
+                    class Solution {
+                        public:
+                            string LCP(string X, string Y){
+                                int i = 0, j = 0;
+                                while(i < X.length() && j &lt; Y.length()){
+                                    if(X[i] != Y[j]){
+                                        break;
+                                    }
+                                    
+                                    i++;
+                                    j++;
+                                    
+                                }
+                                return X.substr(0, i);
+                            }
+                            string longestCommonPrefix(vector&lt;string>& strs) {
+                                string prefix = strs[0];
+                                for(string s:strs){
+                                    prefix = LCP(prefix, s);
+                                    
+                                }
+                                return prefix;
+                            }
+                        };
+                </code>
+            </pre>
+        </ol>
+        <h2>15. 3Sum</h2>
+        <button>
+            <a href="solution/26.jpg">
+                <img src="hint.png" alt="">
+            </a>
+        </button>
+        <div><b>Explantion</b></div>
+        <div>Click above</div>
+        <ol>
+            <pre>
+                <code class="language-C ++">
+                    class Solution {
+                        public:
+                            vector&lt;vector&lt;int>> threeSum(vector&lt;int>& nums) {
+                                vector&lt;vector&lt;int>> res;
+                                sort(nums.begin(), nums.end());
+                                for(int i = 0; i < nums.size(); i++){
+                                    int target = -nums[i];
+                                    int front = i+1;
+                                    int back = nums.size() - 1;
+                                    while(front < back){
+                                        int sum = nums[front] + nums[back];
+                                        if(sum < target){
+                                            front++;
+                                        }
+                                        else if(sum > target){
+                                            back--;
+                                        }
+                                        else{
+                                            vector&lt;int> triplet{nums[i], nums[front], nums[back]};
+                                            res.push_back(triplet);
+                                            while(front < back && nums[front] == triplet[1]){
+                                                front++;
+                                            }
+                                            while(front < back && nums[back] == triplet[2]){
+                                                back--;
+                                            }
+                                        }
+                                    }
+                                    while(i+1 < nums.size() && nums[i+1] == nums[i]){
+                                        i++;
+                                    }
+                                }
+                                return res;
+                            }
+                        };
+                </code>
+            </pre>
+        </ol>
+        <h2>17.Letter Combinations of a Phone Number</h2>
+        <button>
+            <a href="solution/26.jpg">
+                <img src="hint.png" alt="">
+            </a>
+        </button>
+        <div><b>Explantion</b></div>
+        <div>Click above</div>
+        <ol>
+            <pre>
+                <code class="language-C ++">
+                    class Solution {
+                        public:
+                            const vector&lt;string> pad = {
+                                "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
+                            };
+                            vector&lt;string> letterCombinations(string digits) {
+                                if(digits.empty())
+                                    return {};
+                                vector&lt;string> result;
+                                result.push_back("");
+                                for(auto digit : digits){
+                                    vector&lt;string> tmp;
+                                    for(auto candidate : pad[digit - '0']){
+                                        for(auto s : result){
+                                            tmp.push_back(s + candidate);
+                                        }
+                                    }
+                                    result.swap(tmp);
+                                }
+                                return result;
+                            }
+                        };
+                </code>
+            </pre>
+        </ol>
+        <h2>19. Remove Nth Node From End of List</h2>
+        <button>
+            <a href="solution/26.jpg">
+                <img src="hint.png" alt="">
+            </a>
+        </button>
+        <div><b>Explantion</b></div>
+        <div>Click above</div>
+        <ol>
+            <pre>
+                <code class="language-C ++">
+                    class Solution {
+                        public:
+                            ListNode* removeNthFromEnd(ListNode* head, int n) {
+                                ListNode * start = new ListNode();
+                                start -> next = head;
+                                ListNode* fast = start;
+                                ListNode* slow = start;     
+                        
+                                for(int i = 1; i <= n; ++i)
+                                    fast = fast->next;
+                            
+                                while(fast->next != NULL)
+                                {
+                                    fast = fast->next;
+                                    slow = slow->next;
+                                }
+                                
+                                slow->next = slow->next->next;
+                                
+                                return start->next;
+                            }
+                        };
+                </code>
+            </pre>
+        </ol>
+        <h2>20. Valid Parentheses</h2>
+        <button>
+            <a href="solution/26.jpg">
+                <img src="hint.png" alt="">
+            </a>
+        </button>
+        <div><b>Explantion</b></div>
+        <div>Click above</div>
+        <ol>
+            <pre>
+                <code class="language-C ++">
+                    class Solution {
+                        public:
+                            bool isValid(string s) {
+                                stack&lt;char> st;
+                                for(char i:s){
+                                    if(i == '(' || i == '[' || i == '{')
+                                        st.push(i);
+                                    else{
+                                        if(st.empty())
+                                            return false;
+                                        char out = st.top();
+                                        st.pop();
+                                        if(i == ']' && out == '[')
+                                            continue;
+                                        else if(i == '}' && out == '{')
+                                            continue;
+                                        else if(i == ')' && out == '(')
+                                            continue;
+                                        else
+                                            return false;
+                                    }
+                                }
+                                if(st.empty())
+                                    return true;
+                                else
+                                    return false;
+                                
+                            }
+                        };
+                </code>
+            </pre>
+        </ol>
+        <h2>21. Merge Two Sorted Lists</h2>
+        <button>
+            <a href="solution/26.jpg">
+                <img src="hint.png" alt="">
+            </a>
+        </button>
+        <div><b>Explantion</b></div>
+        <div>Click above</div>
+        <ol>
+            <pre>
+                <code class="language-C ++">
+                    class Solution {
+                        public:
+                            ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+                                if(l1 == NULL)
+                                    return l2;
+                                if(l2 == NULL)
+                                    return l1;
+                                if(l1->val > l2->val)
+                                    swap(l1, l2);
+                                ListNode* res = l1;
+                                while(l1 != NULL && l2 != NULL){
+                                    ListNode* temp = NULL;
+                                    while(l1 != NULL && (l1->val <= l2->val)){
+                                        temp = l1;
+                                        l1 = l1->next;
+                                    }
+                                    temp->next = l2;
+                                    swap(l1, l2);
+                                    
+                                }
+                                return res;
+                            }
+                        };
+                </code>
+            </pre>
+        </ol>
+        <h2>22. Generate Parentheses</h2>
+        <button>
+            <a href="solution/26.jpg">
+                <img src="hint.png" alt="">
+            </a>
+        </button>
+        <div><b>Explantion</b></div>
+        <div>Click above</div>
+        <ol>
+            <pre>
+                <code class="language-C ++">
+                    class Solution {
+                        public:
+                            vector&lt;string> generateParenthesis(int n) {
+                                vector&lt;string> res;
+                                addingpar(res, "", n, 0);
+                                return res;
+                            }
+                            void addingpar(vector&lt;string> &v, string str, int n, int m){
+                                if(n==0 && m==0) {
+                                    v.push_back(str);
+                                    return;
+                                }
+                                if(m > 0){ addingpar(v, str+")", n, m-1); }
+                                if(n > 0){ addingpar(v, str+"(", n-1, m+1); }
+                            }
+                        };
+                </code>
+            </pre>
+        </ol>
         <h2>26. Remove Duplicates from Sorted Array</h2>
         <button>
             <a href="solution/26.jpg">
